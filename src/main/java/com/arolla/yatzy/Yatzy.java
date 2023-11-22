@@ -38,7 +38,7 @@ public class Yatzy {
     }
 
     public static int pair(DiceRoller diceRoller) {
-        return sumDuplicate(diceRoller, 2);
+        return diceRoller.sumDuplicate(2);
     }
 
     public static int twoPairs(DiceRoller diceRoller) {
@@ -46,11 +46,11 @@ public class Yatzy {
     }
 
     public static int threeOfAKind(DiceRoller diceRoller) {
-        return sumDuplicate(diceRoller, 3);
+        return diceRoller.sumDuplicate(3);
     }
 
     public static int fourOfAKind(DiceRoller diceRoller) {
-        return sumDuplicate(diceRoller, 4);
+        return diceRoller.sumDuplicate(4);
     }
 
     public static int smallStraight(int d1, int d2, int d3, int d4, int d5) {
@@ -119,15 +119,6 @@ public class Yatzy {
             return _2_at * 2 + _3_at * 3;
         else
             return 0;
-    }
-
-    private static int sumDuplicate(DiceRoller diceRoller, int numberOfAppearance) {
-        return diceRoller.getCountsMap().entrySet()
-                .stream()
-                .filter(entry -> entry.getValue() >= numberOfAppearance)
-                .mapToInt(entry -> entry.getKey())
-                .max()
-                .orElse(0) * numberOfAppearance;
     }
 
     private static int findTwoPairs(DiceRoller diceRoller) {

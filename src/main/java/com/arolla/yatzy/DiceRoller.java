@@ -30,4 +30,13 @@ public class DiceRoller {
                 .getOrDefault(diceNumber, 0L)
                 .intValue() * diceNumber;
     }
+
+    public int sumDuplicate(int numberOfAppearance) {
+        return getCountsMap().entrySet()
+                .stream()
+                .filter(entry -> entry.getValue() >= numberOfAppearance)
+                .mapToInt(entry -> entry.getKey())
+                .max()
+                .orElse(0) * numberOfAppearance;
+    }
 }
