@@ -15,11 +15,11 @@ public class YatzyTest {
 
     @Test
     public void yatzy() {
-        assertEquals(50, Yatzy.yatzy(4, 4, 4, 4, 4));
-        assertEquals(50, Yatzy.yatzy(6, 6, 6, 6, 6));
-        assertEquals(0, Yatzy.yatzy(6, 6, 6, 6, 3));
-        assertEquals(50, Yatzy.yatzy(1, 1, 1, 1, 1));
-        assertEquals(0, Yatzy.yatzy(1, 1, 1, 2, 1));
+        assertEquals(50, Yatzy.yatzy(new DiceRoller(4, 4, 4, 4, 4)));
+        assertEquals(50, Yatzy.yatzy(new DiceRoller(6, 6, 6, 6, 6)));
+        assertEquals(0, Yatzy.yatzy(new DiceRoller(6, 6, 6, 6, 3)));
+        assertEquals(50, Yatzy.yatzy(new DiceRoller(1, 1, 1, 1, 1)));
+        assertEquals(0, Yatzy.yatzy(new DiceRoller(1, 1, 1, 2, 1)));
     }
 
     @Test

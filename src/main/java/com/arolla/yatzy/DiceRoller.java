@@ -1,6 +1,11 @@
 package com.arolla.yatzy;
 
 import java.util.List;
+import java.util.Map;
+
+import static java.util.function.Function.identity;
+import static java.util.stream.Collectors.counting;
+import static java.util.stream.Collectors.groupingBy;
 
 public class DiceRoller {
     private final List<Integer> dices;
@@ -13,5 +18,10 @@ public class DiceRoller {
         return dices.stream()
                 .mapToInt(Integer::intValue)
                 .sum();
+    }
+
+    public Map<Integer, Long> getCountsMap() {
+        return dices.stream()
+                .collect(groupingBy(identity(), counting()));
     }
 }
