@@ -12,11 +12,13 @@ import static java.util.stream.Collectors.*;
 public class DiceRoller {
 
     private final List<Integer> dices;
-    private static final List<Integer> SMALL_STRAIGHT_LIST = List.of(1, 2, 3, 4, 5);
-    private static final List<Integer> LARGEST_STRAIGHT_LIST = List.of(2, 3, 4, 5, 6);
 
     public DiceRoller(int d1, int d2, int d3, int d4, int d5) {
         this.dices = List.of(d1, d2, d3, d4, d5);
+    }
+
+    public List<Integer> getDices() {
+        return dices;
     }
 
     public int sum() {
@@ -32,20 +34,6 @@ public class DiceRoller {
 
     public boolean isYatzy() {
         return getCountsMap().size() == 1;
-    }
-
-    public boolean isSmallStraight() {
-        return dices.stream()
-                .sorted()
-                .collect(toList())
-                .equals(SMALL_STRAIGHT_LIST);
-    }
-
-    public boolean isLargeStraight() {
-        return dices.stream()
-                .sorted()
-                .collect(toList())
-                .equals(LARGEST_STRAIGHT_LIST);
     }
 
     public boolean isAFullHouse() {

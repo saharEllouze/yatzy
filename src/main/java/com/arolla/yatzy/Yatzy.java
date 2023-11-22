@@ -4,13 +4,14 @@ import com.arolla.yatzy.pair.rules.template.FourOfAKindTemplate;
 import com.arolla.yatzy.pair.rules.template.PairTemplate;
 import com.arolla.yatzy.pair.rules.template.ThreeOfAKindTemplate;
 import com.arolla.yatzy.pair.rules.template.TwoPairsTemplate;
+
 import com.arolla.yatzy.simple.rules.template.*;
+import com.arolla.yatzy.small.large.template.LargeTemplate;
+import com.arolla.yatzy.small.large.template.SmallTemplate;
 
 public class Yatzy {
 
     private static final int YATZY_SCORE = 50;
-    private static final int SMALL_STRAIGHT_SCORE = 15;
-    private static final int LARGE_STRAIGHT_SCORE = 20;
 
     public static int chance(DiceRoller diceRoller) {
         return diceRoller.sum();
@@ -71,11 +72,13 @@ public class Yatzy {
     }
 
     public static int smallStraight(DiceRoller diceRoller) {
-        return diceRoller.isSmallStraight() ? SMALL_STRAIGHT_SCORE : 0;
+        SmallTemplate smallTemplate = new SmallTemplate();
+        return smallTemplate.checkTypeStraight(diceRoller) ;
     }
 
     public static int largeStraight(DiceRoller diceRoller) {
-        return diceRoller.isLargeStraight() ? LARGE_STRAIGHT_SCORE : 0;
+        LargeTemplate largeTemplate = new LargeTemplate();
+        return largeTemplate.checkTypeStraight(diceRoller) ;
     }
 
     public static int fullHouse(DiceRoller diceRoller) {
