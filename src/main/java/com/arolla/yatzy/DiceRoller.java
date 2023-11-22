@@ -22,6 +22,10 @@ public class DiceRoller {
                 .sum();
     }
 
+    public boolean isYatzy() {
+        return getCountsMap().size() == 1;
+    }
+
     public int getDiceNumberCount(int diceNumber) {
         return getCountsMap()
                 .getOrDefault(diceNumber, 0L)
@@ -64,8 +68,8 @@ public class DiceRoller {
                 .equals(LARGEST_STRAIGHT_LIST);
     }
 
-    public boolean isYatzy() {
-        return getCountsMap().size() == 1;
+    public boolean isAFullHouse() {
+        return sumDuplicate(3) != 0 && findTwoPairs() != 0 && !isYatzy();
     }
 
     private Map<Integer, Long> getCountsMap() {

@@ -66,10 +66,6 @@ public class Yatzy {
     }
 
     public static int fullHouse(DiceRoller diceRoller) {
-        return isAFullHouse(diceRoller)? diceRoller.sum() : 0;
-    }
-
-    private static boolean isAFullHouse(DiceRoller diceRoller) {
-        return diceRoller.sumDuplicate(3) != 0 && diceRoller.findTwoPairs() != 0 && !diceRoller.isYatzy();
+        return diceRoller.isAFullHouse()? diceRoller.sum() : 0;
     }
 }
