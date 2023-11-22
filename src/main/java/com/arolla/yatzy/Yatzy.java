@@ -10,16 +10,8 @@ public class Yatzy {
         return diceRoller.getCountsMap().size() == 1 ? 50 : 0;
     }
 
-    public static int ones(int d1, int d2, int d3, int d4, int d5) {
-        int sum = 0;
-        if (d1 == 1) sum++;
-        if (d2 == 1) sum++;
-        if (d3 == 1) sum++;
-        if (d4 == 1) sum++;
-        if (d5 == 1)
-            sum++;
-
-        return sum;
+    public static int ones(DiceRoller diceRoller) {
+        return diceRoller.getCountsMap().getOrDefault(1, 0L).intValue();
     }
 
     public static int twos(int d1, int d2, int d3, int d4, int d5) {

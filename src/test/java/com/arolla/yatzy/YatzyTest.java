@@ -24,11 +24,11 @@ public class YatzyTest {
 
     @Test
     public void ones() {
-        assertEquals(1, Yatzy.ones(1, 2, 3, 4, 5));
-        assertEquals(2, Yatzy.ones(1, 2, 1, 4, 5));
-        assertEquals(0, Yatzy.ones(6, 2, 2, 4, 5));
-        assertEquals(4, Yatzy.ones(1, 2, 1, 1, 1));
-        assertEquals(0, Yatzy.ones(3, 3, 3, 4, 5));
+        assertEquals(1, Yatzy.ones(new DiceRoller(1, 2, 3, 4, 5)));
+        assertEquals(2, Yatzy.ones(new DiceRoller(1, 2, 1, 4, 5)));
+        assertEquals(0, Yatzy.ones(new DiceRoller(6, 2, 2, 4, 5)));
+        assertEquals(4, Yatzy.ones(new DiceRoller(1, 2, 1, 1, 1)));
+        assertEquals(0, Yatzy.ones(new DiceRoller(3, 3, 3, 4, 5)));
     }
 
     @Test
