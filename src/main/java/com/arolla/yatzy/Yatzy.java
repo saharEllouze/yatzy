@@ -11,22 +11,15 @@ public class Yatzy {
     }
 
     public static int ones(DiceRoller diceRoller) {
-        return diceRoller.getCountsMap().getOrDefault(1, 0L).intValue();
+        return getDiceNumberCount(diceRoller, 1);
     }
 
     public static int twos(DiceRoller diceRoller) {
-        return diceRoller.getCountsMap().getOrDefault(2, 0L).intValue() * 2;
+        return getDiceNumberCount(diceRoller, 2);
     }
 
-    public static int threes(int d1, int d2, int d3, int d4, int d5) {
-        int s;
-        s = 0;
-        if (d1 == 3) s += 3;
-        if (d2 == 3) s += 3;
-        if (d3 == 3) s += 3;
-        if (d4 == 3) s += 3;
-        if (d5 == 3) s += 3;
-        return s;
+    public static int threes(DiceRoller diceRoller) {
+        return getDiceNumberCount(diceRoller, 3);
     }
 
     public static int fours(int d1, int d2, int d3, int d4, int d5) {
@@ -201,5 +194,11 @@ public class Yatzy {
             return _2_at * 2 + _3_at * 3;
         else
             return 0;
+    }
+
+    private static int getDiceNumberCount(DiceRoller diceRoller, int diceNumber) {
+        return diceRoller.getCountsMap()
+                .getOrDefault(diceNumber, 0L)
+                .intValue() * diceNumber;
     }
 }
