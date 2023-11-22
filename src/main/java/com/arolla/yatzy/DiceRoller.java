@@ -2,14 +2,14 @@ package com.arolla.yatzy;
 
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import static java.util.function.Function.identity;
-import static java.util.stream.Collectors.counting;
-import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.*;
 
 public class DiceRoller {
+
     private final List<Integer> dices;
+    private static final List<Integer> SMALL_STRAIGHT_LIST = List.of(1, 2, 3, 4, 5);
 
     public DiceRoller(int d1, int d2, int d3, int d4, int d5) {
         this.dices = List.of(d1, d2, d3, d4, d5);
@@ -46,11 +46,18 @@ public class DiceRoller {
                 .stream()
                 .filter(entry -> entry.getValue() >= 2)
                 .map(entry -> entry.getKey())
-                .collect(Collectors.toList());
+                .collect(toList());
         if (listOfDice.size() != 1) {
             return listOfDice.stream().mapToInt(value -> value).sum() * 2;
         } else {
             return 0;
         }
+    }
+
+    public boolean isSmallStraight() {
+        return dices.stream()
+                .sorted()
+                .collect(toList())
+                .equals(SMALL_STRAIGHT_LIST);
     }
 }
