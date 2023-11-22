@@ -2,6 +2,7 @@ package com.arolla.yatzy;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.counting;
@@ -38,5 +39,18 @@ public class DiceRoller {
                 .mapToInt(entry -> entry.getKey())
                 .max()
                 .orElse(0) * numberOfAppearance;
+    }
+
+    public int findTwoPairs() {
+        List<Integer> listOfDice = getCountsMap().entrySet()
+                .stream()
+                .filter(entry -> entry.getValue() >= 2)
+                .map(entry -> entry.getKey())
+                .collect(Collectors.toList());
+        if (listOfDice.size() != 1) {
+            return listOfDice.stream().mapToInt(value -> value).sum() * 2;
+        } else {
+            return 0;
+        }
     }
 }

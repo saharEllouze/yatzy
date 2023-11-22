@@ -42,7 +42,7 @@ public class Yatzy {
     }
 
     public static int twoPairs(DiceRoller diceRoller) {
-        return findTwoPairs(diceRoller);
+        return diceRoller.findTwoPairs();
     }
 
     public static int threeOfAKind(DiceRoller diceRoller) {
@@ -119,18 +119,5 @@ public class Yatzy {
             return _2_at * 2 + _3_at * 3;
         else
             return 0;
-    }
-
-    private static int findTwoPairs(DiceRoller diceRoller) {
-        List<Integer> listOfDice = diceRoller.getCountsMap().entrySet()
-                .stream()
-                .filter(entry -> entry.getValue() >= 2)
-                .map(entry -> entry.getKey())
-                .collect(Collectors.toList());
-        if (listOfDice.size() != 1) {
-            return listOfDice.stream().mapToInt(value -> value).sum() * 2;
-        } else {
-            return 0;
-        }
     }
 }
