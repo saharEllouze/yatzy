@@ -38,43 +38,19 @@ public class Yatzy {
     }
 
     public static int pair(DiceRoller diceRoller) {
-        return diceRoller.getCountsMap().entrySet()
-                .stream()
-                .filter(entry -> entry.getValue() >= 2)
-                .mapToInt(entry -> entry.getKey())
-                .max()
-                .orElse(0) * 2;
+        return sumDuplicate(diceRoller, 2);
     }
 
     public static int twoPairs(DiceRoller diceRoller) {
-        List<Integer> listOfDice = diceRoller.getCountsMap().entrySet()
-                .stream()
-                .filter(entry -> entry.getValue() >= 2)
-                .map(entry -> entry.getKey())
-                .collect(Collectors.toList());
-        if (listOfDice.size() != 1) {
-            return listOfDice.stream().mapToInt(value -> value).sum() * 2;
-        } else {
-            return 0;
-        }
+        return findTwoPairs(diceRoller);
     }
 
     public static int threeOfAKind(DiceRoller diceRoller) {
-        return diceRoller.getCountsMap().entrySet()
-                .stream()
-                .filter(entry -> entry.getValue() >= 3)
-                .mapToInt(entry -> entry.getKey())
-                .max()
-                .orElse(0) * 3;
+        return sumDuplicate(diceRoller, 3);
     }
 
     public static int fourOfAKind(DiceRoller diceRoller) {
-        return diceRoller.getCountsMap().entrySet()
-                .stream()
-                .filter(entry -> entry.getValue() >= 4)
-                .mapToInt(entry -> entry.getKey())
-                .max()
-                .orElse(0) * 4;
+        return sumDuplicate(diceRoller, 4);
     }
 
     public static int smallStraight(int d1, int d2, int d3, int d4, int d5) {
@@ -143,5 +119,27 @@ public class Yatzy {
             return _2_at * 2 + _3_at * 3;
         else
             return 0;
+    }
+
+    private static int sumDuplicate(DiceRoller diceRoller, int numberOfAppearance) {
+        return diceRoller.getCountsMap().entrySet()
+                .stream()
+                .filter(entry -> entry.getValue() >= numberOfAppearance)
+                .mapToInt(entry -> entry.getKey())
+                .max()
+                .orElse(0) * numberOfAppearance;
+    }
+
+    private static int findTwoPairs(DiceRoller diceRoller) {
+        List<Integer> listOfDice = diceRoller.getCountsMap().entrySet()
+                .stream()
+                .filter(entry -> entry.getValue() >= 2)
+                .map(entry -> entry.getKey())
+                .collect(Collectors.toList());
+        if (listOfDice.size() != 1) {
+            return listOfDice.stream().mapToInt(value -> value).sum() * 2;
+        } else {
+            return 0;
+        }
     }
 }
