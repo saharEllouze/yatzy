@@ -1,5 +1,9 @@
 package com.arolla.yatzy;
 
+import com.arolla.yatzy.pair.rules.template.FourOfAKindTemplate;
+import com.arolla.yatzy.pair.rules.template.PairTemplate;
+import com.arolla.yatzy.pair.rules.template.ThreeOfAKindTemplate;
+import com.arolla.yatzy.pair.rules.template.TwoPairsTemplate;
 import com.arolla.yatzy.simple.rules.template.*;
 
 public class Yatzy {
@@ -47,19 +51,23 @@ public class Yatzy {
     }
 
     public static int pair(DiceRoller diceRoller) {
-        return diceRoller.sumDuplicate(2);
+        PairTemplate pairTemplate = new PairTemplate();
+        return pairTemplate.maxOrSumDuplicate(diceRoller);
     }
 
     public static int twoPairs(DiceRoller diceRoller) {
-        return diceRoller.findTwoPairs();
+        TwoPairsTemplate twoPairsTemplate = new TwoPairsTemplate();
+        return twoPairsTemplate.maxOrSumDuplicate(diceRoller);
     }
 
     public static int threeOfAKind(DiceRoller diceRoller) {
-        return diceRoller.sumDuplicate(3);
+        ThreeOfAKindTemplate threeOfAKindTemplate = new ThreeOfAKindTemplate();
+        return threeOfAKindTemplate.maxOrSumDuplicate(diceRoller);
     }
 
     public static int fourOfAKind(DiceRoller diceRoller) {
-        return diceRoller.sumDuplicate(4);
+        FourOfAKindTemplate fourOfAKindTemplate = new FourOfAKindTemplate();
+        return fourOfAKindTemplate.maxOrSumDuplicate(diceRoller);
     }
 
     public static int smallStraight(DiceRoller diceRoller) {

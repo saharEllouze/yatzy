@@ -1,5 +1,8 @@
 package com.arolla.yatzy;
 
+import com.arolla.yatzy.pair.rules.template.ThreeOfAKindTemplate;
+import com.arolla.yatzy.pair.rules.template.TwoPairsTemplate;
+
 import java.util.List;
 import java.util.Map;
 
@@ -31,28 +34,6 @@ public class DiceRoller {
         return getCountsMap().size() == 1;
     }
 
-    public int sumDuplicate(int numberOfAppearance) {
-        return getCountsMap().entrySet()
-                .stream()
-                .filter(entry -> entry.getValue() >= numberOfAppearance)
-                .mapToInt(entry -> entry.getKey())
-                .max()
-                .orElse(0) * numberOfAppearance;
-    }
-
-    public int findTwoPairs() {
-        List<Integer> listOfDice = getCountsMap().entrySet()
-                .stream()
-                .filter(entry -> entry.getValue() >= 2)
-                .map(entry -> entry.getKey())
-                .collect(toList());
-        if (listOfDice.size() != 1) {
-            return listOfDice.stream().mapToInt(value -> value).sum() * 2;
-        } else {
-            return 0;
-        }
-    }
-
     public boolean isSmallStraight() {
         return dices.stream()
                 .sorted()
@@ -68,6 +49,8 @@ public class DiceRoller {
     }
 
     public boolean isAFullHouse() {
-        return sumDuplicate(3) != 0 && findTwoPairs() != 0 && !isYatzy();
+        ThreeOfAKindTemplate threeOfAKindTemplate = new ThreeOfAKindTemplate();
+        TwoPairsTemplate twoPairsTemplate = new TwoPairsTemplate();
+        return threeOfAKindTemplate.maxOrSumDuplicate(this) != 0 && twoPairsTemplate.maxOrSumDuplicate(this) != 0 && !this.isYatzy();
     }
 }
