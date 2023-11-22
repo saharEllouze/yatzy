@@ -1,5 +1,8 @@
 package com.arolla.yatzy;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class Yatzy {
 
     public static int chance(DiceRoller diceRoller) {
@@ -43,25 +46,19 @@ public class Yatzy {
                 .orElse(0) * 2;
     }
 
-    public static int twoPairs(int d1, int d2, int d3, int d4, int d5) {
-        int[] counts = new int[6];
-        counts[d1 - 1]++;
-        counts[d2 - 1]++;
-        counts[d3 - 1]++;
-        counts[d4 - 1]++;
-        counts[d5 - 1]++;
-        int n = 0;
-        int score = 0;
-        for (int i = 0; i < 6; i += 1)
-            if (counts[6 - i - 1] >= 2) {
-                n++;
-                score += (6 - i);
-            }
-        if (n == 2)
-            return score * 2;
-        else
+    public static int twoPairs(DiceRoller diceRoller) {
+        List<Integer> listOfDice = diceRoller.getCountsMap().entrySet()
+                .stream()
+                .filter(entry -> entry.getValue() >= 2)
+                .map(entry -> entry.getKey())
+                .collect(Collectors.toList());
+        if (listOfDice.size() != 1) {
+            return listOfDice.stream().mapToInt(value -> value).sum() * 2;
+        } else {
             return 0;
+        }
     }
+
     public static int threeOfAKind(int d1, int d2, int d3, int d4, int d5) {
         int[] t;
         t = new int[6];
