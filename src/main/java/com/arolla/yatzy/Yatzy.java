@@ -1,7 +1,6 @@
 package com.arolla.yatzy;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import com.arolla.yatzy.simple.rules.template.*;
 
 public class Yatzy {
 
@@ -18,27 +17,33 @@ public class Yatzy {
     }
 
     public static int ones(DiceRoller diceRoller) {
-        return diceRoller.getDiceNumberCount(1);
+        OnesSimpleRuleTemplate oneSimpleRuleTemplate = new OnesSimpleRuleTemplate();
+        return oneSimpleRuleTemplate.getDiceNumberCount(diceRoller);
     }
 
     public static int twos(DiceRoller diceRoller) {
-        return diceRoller.getDiceNumberCount(2);
+        TwosSimpleRuleTemplate towsSimpleRuleTemplate = new TwosSimpleRuleTemplate();
+        return towsSimpleRuleTemplate.getDiceNumberCount(diceRoller);
     }
 
     public static int threes(DiceRoller diceRoller) {
-        return diceRoller.getDiceNumberCount(3);
+        ThreesSimpleRuleTemplate threesSimpleRuleTemplate = new ThreesSimpleRuleTemplate();
+        return threesSimpleRuleTemplate.getDiceNumberCount(diceRoller);
     }
 
     public static int fours(DiceRoller diceRoller) {
-        return diceRoller.getDiceNumberCount(4);
+        FoursSimpleRuleTemplate foursSimpleRuleTemplate = new FoursSimpleRuleTemplate();
+        return foursSimpleRuleTemplate.getDiceNumberCount(diceRoller);
     }
 
     public static int fives(DiceRoller diceRoller) {
-        return diceRoller.getDiceNumberCount(5);
+        FivesSimpleRuleTemplate fivesSimpleRuleTemplate = new FivesSimpleRuleTemplate();
+        return fivesSimpleRuleTemplate.getDiceNumberCount(diceRoller);
     }
 
     public static int sixes(DiceRoller diceRoller) {
-        return diceRoller.getDiceNumberCount(6);
+        SixesSimpleRuleTemplate sixesSimpleRuleTemplate = new SixesSimpleRuleTemplate();
+        return sixesSimpleRuleTemplate.getDiceNumberCount(diceRoller);
     }
 
     public static int pair(DiceRoller diceRoller) {
@@ -66,6 +71,6 @@ public class Yatzy {
     }
 
     public static int fullHouse(DiceRoller diceRoller) {
-        return diceRoller.isAFullHouse()? diceRoller.sum() : 0;
+        return diceRoller.isAFullHouse() ? diceRoller.sum() : 0;
     }
 }

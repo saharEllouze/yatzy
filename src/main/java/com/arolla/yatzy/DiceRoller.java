@@ -22,14 +22,13 @@ public class DiceRoller {
                 .sum();
     }
 
-    public boolean isYatzy() {
-        return getCountsMap().size() == 1;
+    public Map<Integer, Long> getCountsMap() {
+        return dices.stream()
+                .collect(groupingBy(identity(), counting()));
     }
 
-    public int getDiceNumberCount(int diceNumber) {
-        return getCountsMap()
-                .getOrDefault(diceNumber, 0L)
-                .intValue() * diceNumber;
+    public boolean isYatzy() {
+        return getCountsMap().size() == 1;
     }
 
     public int sumDuplicate(int numberOfAppearance) {
@@ -70,10 +69,5 @@ public class DiceRoller {
 
     public boolean isAFullHouse() {
         return sumDuplicate(3) != 0 && findTwoPairs() != 0 && !isYatzy();
-    }
-
-    private Map<Integer, Long> getCountsMap() {
-        return dices.stream()
-                .collect(groupingBy(identity(), counting()));
     }
 }
