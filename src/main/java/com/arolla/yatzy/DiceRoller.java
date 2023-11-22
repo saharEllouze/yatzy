@@ -22,11 +22,6 @@ public class DiceRoller {
                 .sum();
     }
 
-    public Map<Integer, Long> getCountsMap() {
-        return dices.stream()
-                .collect(groupingBy(identity(), counting()));
-    }
-
     public int getDiceNumberCount(int diceNumber) {
         return getCountsMap()
                 .getOrDefault(diceNumber, 0L)
@@ -67,5 +62,14 @@ public class DiceRoller {
                 .sorted()
                 .collect(toList())
                 .equals(LARGEST_STRAIGHT_LIST);
+    }
+
+    public boolean isYatzy() {
+        return getCountsMap().size() == 1;
+    }
+
+    private Map<Integer, Long> getCountsMap() {
+        return dices.stream()
+                .collect(groupingBy(identity(), counting()));
     }
 }

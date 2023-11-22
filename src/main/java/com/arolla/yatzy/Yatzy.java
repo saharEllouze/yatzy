@@ -5,12 +5,16 @@ import java.util.stream.Collectors;
 
 public class Yatzy {
 
+    private static final int YATZY_SCORE = 50;
+    private static final int SMALL_STRAIGHT_SCORE = 15;
+    private static final int LARGE_STRAIGHT_SCORE = 20;
+
     public static int chance(DiceRoller diceRoller) {
         return diceRoller.sum();
     }
 
     public static int yatzy(DiceRoller diceRoller) {
-        return diceRoller.getCountsMap().size() == 1 ? 50 : 0;
+        return diceRoller.isYatzy() ? YATZY_SCORE : 0;
     }
 
     public static int ones(DiceRoller diceRoller) {
@@ -54,11 +58,11 @@ public class Yatzy {
     }
 
     public static int smallStraight(DiceRoller diceRoller) {
-        return diceRoller.isSmallStraight() ? 15 : 0;
+        return diceRoller.isSmallStraight() ? SMALL_STRAIGHT_SCORE : 0;
     }
 
     public static int largeStraight(DiceRoller diceRoller) {
-        return diceRoller.isLargeStraight() ? 20 : 0;
+        return diceRoller.isLargeStraight() ? LARGE_STRAIGHT_SCORE : 0;
     }
 
     public static int fullHouse(int d1, int d2, int d3, int d4, int d5) {
