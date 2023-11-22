@@ -24,4 +24,10 @@ public class DiceRoller {
         return dices.stream()
                 .collect(groupingBy(identity(), counting()));
     }
+
+    public int getDiceNumberCount(int diceNumber) {
+        return getCountsMap()
+                .getOrDefault(diceNumber, 0L)
+                .intValue() * diceNumber;
+    }
 }

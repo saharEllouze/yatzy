@@ -11,61 +11,27 @@ public class Yatzy {
     }
 
     public static int ones(DiceRoller diceRoller) {
-        return getDiceNumberCount(diceRoller, 1);
+        return diceRoller.getDiceNumberCount(1);
     }
 
     public static int twos(DiceRoller diceRoller) {
-        return getDiceNumberCount(diceRoller, 2);
+        return diceRoller.getDiceNumberCount(2);
     }
 
     public static int threes(DiceRoller diceRoller) {
-        return getDiceNumberCount(diceRoller, 3);
+        return diceRoller.getDiceNumberCount(3);
     }
 
-    public static int fours(int d1, int d2, int d3, int d4, int d5) {
-        int[] dice = new int[5];
-        dice[0] = d1;
-        dice[1] = d2;
-        dice[2] = d3;
-        dice[3] = d4;
-        dice[4] = d5;
-        int sum;
-        sum = 0;
-        for (int at = 0; at != 5; at++) {
-            if (dice[at] == 4) {
-                sum += 4;
-            }
-        }
-        return sum;
+    public static int fours(DiceRoller diceRoller) {
+        return diceRoller.getDiceNumberCount(4);
     }
 
-    public static int fives(int d1, int d2, int d3, int d4, int d5) {
-        int[] dice = new int[5];
-        dice[0] = d1;
-        dice[1] = d2;
-        dice[2] = d3;
-        dice[3] = d4;
-        dice[4] = d5;
-        int s = 0;
-        int i;
-        for (i = 0; i < dice.length; i++)
-            if (dice[i] == 5)
-                s = s + 5;
-        return s;
+    public static int fives(DiceRoller diceRoller) {
+        return diceRoller.getDiceNumberCount(5);
     }
 
-    public static int sixes(int d1, int d2, int d3, int d4, int d5) {
-        int[] dice = new int[5];
-        dice[0] = d1;
-        dice[1] = d2;
-        dice[2] = d3;
-        dice[3] = d4;
-        dice[4] = d5;
-        int sum = 0;
-        for (int at = 0; at < dice.length; at++)
-            if (dice[at] == 6)
-                sum = sum + 6;
-        return sum;
+    public static int sixes(DiceRoller diceRoller) {
+        return diceRoller.getDiceNumberCount(6);
     }
 
     public static int pair(int d1, int d2, int d3, int d4, int d5) {
@@ -194,11 +160,5 @@ public class Yatzy {
             return _2_at * 2 + _3_at * 3;
         else
             return 0;
-    }
-
-    private static int getDiceNumberCount(DiceRoller diceRoller, int diceNumber) {
-        return diceRoller.getCountsMap()
-                .getOrDefault(diceNumber, 0L)
-                .intValue() * diceNumber;
     }
 }
