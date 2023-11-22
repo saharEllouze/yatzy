@@ -1,6 +1,7 @@
 package com.arolla.yatzy;
 
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class YatzyTest {
@@ -89,12 +90,12 @@ public class YatzyTest {
 
     @Test
     public void threeOfAKind() {
-        assertEquals(9, Yatzy.threeOfAKind(3, 3, 3, 4, 5));
-        assertEquals(15, Yatzy.threeOfAKind(5, 3, 5, 4, 5));
-        assertEquals(9, Yatzy.threeOfAKind(3, 3, 3, 3, 5));
-        assertEquals(9, Yatzy.threeOfAKind(3, 3, 3, 3, 3));
-        assertEquals(0, Yatzy.threeOfAKind(3, 3, 4, 5, 6));
-        assertEquals(9, Yatzy.threeOfAKind(3, 3, 3, 3, 1));
+        assertEquals(9, Yatzy.threeOfAKind(new DiceRoller(3, 3, 3, 4, 5)));
+        assertEquals(15, Yatzy.threeOfAKind(new DiceRoller(5, 3, 5, 4, 5)));
+        assertEquals(9, Yatzy.threeOfAKind(new DiceRoller(3, 3, 3, 3, 5)));
+        assertEquals(9, Yatzy.threeOfAKind(new DiceRoller(3, 3, 3, 3, 3)));
+        assertEquals(0, Yatzy.threeOfAKind(new DiceRoller(3, 3, 4, 5, 6)));
+        assertEquals(9, Yatzy.threeOfAKind(new DiceRoller(3, 3, 3, 3, 1)));
     }
 
     @Test
